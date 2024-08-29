@@ -10,6 +10,10 @@ jobs:
         container: cuaesd/aesd-autotest:unit-test
         runs-on: self-hosted
         steps:
+          - name: Check Docker status
+            run: docker info
+          - name: Get Docker logs
+            run: sudo journalctl -u docker.service
           - uses: actions/checkout@v3
           - name: Checkout submodules
             run : git submodule update --init --recursive
